@@ -5,7 +5,7 @@ import React, { useState } from "react"
 
 
 
-const ZKVerifier: React.FC = () => {
+const ZKVerifier = ({ setShowRegisterAddress }: { setShowRegisterAddress: (value: boolean) => void }) => {
   const [code, setCode] = useState<string>("")
   const [isValid, setIsValid] = useState<boolean | null>(null)
   const [revealAddress, setRevealAddress] = useState<string | null>(null)
@@ -62,7 +62,7 @@ const ZKVerifier: React.FC = () => {
         placeholder="Código secreto"
         value={code}
         onChange={(e) => setCode(e.target.value)}
-        style={{ display: "block", marginBottom: "1rem", width: "100%", height:'30px', paddingLeft:'10px' }}
+        style={{ display: "block", marginBottom: "3rem", width: "40%", height:'30px', paddingLeft:'10px' }}
       />
       <button onClick={handleVerify} disabled={loading}>
         {loading ? "Verificando..." : "Verificar Prova"}
@@ -81,6 +81,11 @@ const ZKVerifier: React.FC = () => {
         </p>
       )}
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <p style={{fontSize:15}}>
+        Clique <span style={{color:'blue', cursor:'pointer'}} onClick={() => setShowRegisterAddress(true)}>
+                aqui
+              </span> para registrar um endereço
+      </p>
     </div>
   )
 }
